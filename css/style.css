@@ -36,3 +36,8 @@ a:hover{
 .bottom .copyright p, .bottom .copyright a:hover{
     color: #6c6d83;
 }
+#footer {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}

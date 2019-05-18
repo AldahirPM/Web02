@@ -5,4 +5,5 @@ $con =  new mysqli('localhost','root','', 'crud' );
 }else{
     echo "error en la conexion";
 }*/
+session_start();
 ?>  

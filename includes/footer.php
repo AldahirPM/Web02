@@ -1,4 +1,5 @@
-<div class="bottom section-padding">
+
+		<div class="bottom section-padding" id="footer">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 text-center">
@@ -9,5 +10,6 @@
 				</div>
 			</div>
 		</div>
+
 </body>
 </html>
