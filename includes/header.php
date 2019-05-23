@@ -16,4 +16,5 @@
 <body>
 <nav class="navbar">
     <a href="index.php" class="navbar-brand a" >CRUD-PEDRO </a>
+    <h2 class="navbar-brand a" >Edita tu producto <?php echo date("d/m/Y"); ?></h2>
 </nav>

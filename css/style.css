@@ -38,6 +38,7 @@ a:hover{
 }
 #footer {
 	width: 100%;
-	position: absolute;
+	position: none;
 	bottom: 0;
 }
+
