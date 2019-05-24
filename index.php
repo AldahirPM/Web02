@@ -1,4 +1,4 @@
-<?php require_once 'includes/header.php'  ?>
+           <?php require_once 'includes/header.php'  ?>
 <?php require_once 'includes/conexion.php'  ?>
 <?php require_once 'includes/funciones.php'?>
 
@@ -12,7 +12,7 @@
             
 <div class="container">
     <br>
-        <button type="button" class="btn btn-primary"><a href="nuevoproducto.php" class="a">Agregar +</a></button>
+        <a href="nuevoproducto.php" class="btn btn-primary">Agregar +</a>
     <br>
     <br>
     <table class="table custab" >
