@@ -1,15 +1,8 @@
-           <?php require_once 'includes/header.php'  ?>
+<?php require_once 'includes/header.php'  ?>
 <?php require_once 'includes/conexion.php'  ?>
 <?php require_once 'includes/funciones.php'?>
-
 <?php $productos =  mostrarProductos($con) ?>
-
-<?php $total =  sumarProductos($con); 
-
-
-
-?>
-            
+<?php $total =  sumarProductos($con); ?>         
 <div class="container">
     <br>
         <a href="nuevoproducto.php" class="btn btn-primary">Agregar +</a>
@@ -25,12 +18,9 @@
                 <th>Opciones</th>
             </tr>
         </thead>
-
         <tbody class=" text-center">
             <?php  while($producto = mysqli_fetch_assoc($productos)):?>
-           
             <?php  $_SESSION['producto'] = $producto  ?>
-
             <tr>
                 <td><?= $_SESSION['producto']['id'] ?></td>
                 <td><?= $_SESSION['producto']['nombre'] ?></td>
@@ -38,7 +28,7 @@
                 <td>S/<?=$_SESSION['producto']['precio']?></td>
                 <td class="text-center a">
                     <a href="editarproducto.php?id=<?=$_SESSION['producto']['id']?>" class="btn btn-success"  >E</a>
-                    <a href="index.php" class="btn btn-danger">X</a>
+                    <a href="eliminarproducto.php?id=<?=$_SESSION['producto']['id']?>" class="btn btn-danger">X</a>
                 </td>
             </tr>
             <?php endwhile;?>
@@ -47,14 +37,11 @@
                 <td></td>
                 <td></td>
                 <?php  while($totalproducto = mysqli_fetch_assoc($total)):?>
-                <td><strong>S/<?= $totalproducto['total']?></strong></td>
+                <td><strong>S/<?= round(($totalproducto['total']),2)?></strong></td>
                 <td><strong>TOTAL</strong></td>
                 <?php endwhile;?>
             </tr>
         </tbody>
     </table>
-
-</div>
-
-    
+</div> 
 <?php require_once 'includes/footer.php'  ?>
