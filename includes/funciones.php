@@ -1,9 +1,12 @@
 <?php 
-function mostrarErrore($con , $campo)
+
+function mostrarErrore($errores , $campo)
 {
     $alerta= '';
-
-
+    if(isset($errores[$campo]) && !empty($campo)){
+        $alerta ="<div class='alert alert-danger' role='alert'> A simple danger alert—check it out! </div>" ;
+    }
+    return $alerta;
 }
 function mostrarProductos($con ){
     $sql= "select p.id, p.nombre, p.precio, c.nomcat from producto p inner join categoria c on c.id_categoria = p.id_cat   order by id ";
@@ -31,7 +34,7 @@ function conseguirCategorias($con){
     }
     return $resultado;
 }
-function mostrarProducto($con , $id  ){
+function mostrarProducto($con , $id){
     $sql= "select *  from  producto where id  = $id";
     $producto=mysqli_query($con , $sql);
     $resultado = array();
