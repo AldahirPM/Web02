@@ -1,13 +1,36 @@
-<?php 
-
-function mostrarErrore($errores , $campo)
+<?php  
+function mostrarError($error, $campo)
 {
     $alerta= '';
-    if(isset($errores[$campo]) && !empty($campo)){
-        $alerta ="<div class='alert alert-danger' role='alert'> A simple danger alert—check it out! </div>" ;
+    if(isset($error[$campo]) && !empty($campo)){
+        $alerta ="<div class='alert alert-danger' role='alert'>".$error[$campo].'</div>';
     }
     return $alerta;
 }
+function borrarMensaje(){
+    $borrar=false;
+    $_SESSION['completado']=null;
+   
+      if(isset($_SESSION['errores']))
+      {
+        $_SESSION['errores'] = null;
+         $borrar = true;
+      }
+      /*if(isset($_SESSION['errores_entrada']))
+      {
+        $_SESSION['errores_entrada'] = null;
+        $borrar = true;
+      }*/
+  
+      if(isset($_SESSION['errores']))
+      {
+        $_SESSION['completado'] = null;
+        $borrar = true;
+      }
+   // $borrar = session_unset($_SESSION['errores']);
+    
+    return $borrar;
+  }
 function mostrarProductos($con ){
     $sql= "select p.id, p.nombre, p.precio, c.nomcat from producto p inner join categoria c on c.id_categoria = p.id_cat   order by id ";
     $producto=mysqli_query($con , $sql);
