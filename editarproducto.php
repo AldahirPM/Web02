@@ -9,7 +9,6 @@
 <form action="editar-producto.php?id=<?=$mostrar['id']?>" method="POST">
     <div class="container center">
     <?php if(isset($_SESSION['completado'])):?>
-                        
          <div class="alert alert-primary"> 
                             <?=  $_SESSION['completado'];?>   
                         </div>
@@ -20,11 +19,12 @@
                         <?php endif;?>
         
         <h1>Edita tu Producto </h1>
-            <div class="">
+            <div class="form-group">
                 <label for="producto">Nombre de Producto</label>
                 <input type="text" class="form-control" name="producto"  value="<?=$mostrar['nombre']?>">  
             </div>
-            <?php // TENEMOS UN PROBLEMA CON = echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'],'nombre') : ''?>
+            <?php  echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'],'nombre') :''?>
+        
             <div>
                 <label for="precio">Precio:</label>
                     <div class="input-group mb-3" >
@@ -33,8 +33,7 @@
                         </div>
                         <input type="text" class="form-control"  name="precio"  value="<?=$mostrar['precio']?>" ?>
                     </div>
-
-            </div> 
+            </div>  
             <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'],'precio') : ''?>
 
             <div>
@@ -52,7 +51,8 @@
         <br>
         <input type="submit" class="btn btn-primary" value="Guardar">
     </div>
+    <?php borrarMensaje(); ?>
 </form>
-<?php borrarMensaje(); ?>
+
 </body>
     

@@ -19,7 +19,9 @@
             </tr>
         </thead>
         <tbody class=" text-center">
-            <?php  while($producto = mysqli_fetch_assoc($productos)):?>
+            <?php  
+            if($entra)
+            while($producto = mysqli_fetch_assoc($productos)):?>
             <?php  $_SESSION['producto'] = $producto  ?>
             <tr>
                 <td><?= $_SESSION['producto']['id'] ?></td>
