@@ -2,11 +2,24 @@
 <?php require_once 'includes/conexion.php'  ?>
 <?php require_once 'includes/funciones.php'?>
 <?php $productos =  mostrarProductos($con) ?>
-<?php $total =  sumarProductos($con); ?>         
+<?php $total =  sumarProductos($con); ?>
+<br>
 <div class="container">
-    <br>
-        <a href="nuevoproducto.php" class="btn btn-primary">Agregar +</a>
-    <br>
+    <h1>Tus Produtos:</h1>
+    <div class="form-row">
+        <div class="col">
+            <label for=""><strong>Nombre: Pedro Aldahir Gayoso Machaca</strong></label>
+            <br>
+            <label for=""><strong>DNI: 701768858</strong></label>
+            <br>
+            <a href="nuevoproducto.php" class="btn btn-primary">Agregar +</a>
+        </div>
+        <div class="col">
+            <label for=""><strong>Telefono: +51 5411477</strong></label>
+            <br>
+            <label for=""><strong>Registrado el: 1999-57-96</strong></label>
+        </div>
+    </div>
     <br>
     <table class="table custab" >
         <thead class=" text-center">
@@ -19,8 +32,8 @@
             </tr>
         </thead>
         <tbody class=" text-center">
-            <?php  
-            if($entra)
+            <?php
+            if($productos && mysqli_num_rows($productos)>=1):
             while($producto = mysqli_fetch_assoc($productos)):?>
             <?php  $_SESSION['producto'] = $producto  ?>
             <tr>
@@ -34,16 +47,24 @@
                 </td>
             </tr>
             <?php endwhile;?>
+            <?php else:?>
+                <tr>
+                    <td>#</td>
+                    <td>No</td>
+                    <td>realizo </td>
+                    <td>compra</td>
+                    <td>#</td>
+                </tr>           
+            <?php endif; ?>
             <tr>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td><strong>TOTAL</strong></td>
                 <?php  while($totalproducto = mysqli_fetch_assoc($total)):?>
                 <td><strong>S/<?= round(($totalproducto['total']),2)?></strong></td>
-                <td><strong>TOTAL</strong></td>
+                <td><a href="datoscompra.php" class="btn btn-secondary">Facturar</a></td>
                 <?php endwhile;?>
             </tr>
         </tbody>
     </table>
 </div> 
-<?php require_once 'includes/footer.php'  ?>

@@ -3,9 +3,9 @@
 <?php require_once 'includes/funciones.php'?>
 <body>
 <br>
-<br>
-
+<br> 
 <form action="nuevo-producto.php" method="POST"> 
+
     <div class="container center">
         <?php if(isset($_SESSION['completado'])):?>
                         
