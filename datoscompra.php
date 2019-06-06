@@ -10,13 +10,10 @@
 
         <label for="dni">DNI:</label>
         <input type="text" class="form-control" name ="dni" placeholder= "74586***">
-    </div>
-    <div>
-        <tr>
-            <td><a href="index.php" class="btn btn-success">Cliente</a></td>
-            <td><a href="#" class="btn btn-danger">Sin datos</a></td>  
-            <td><a href="#" class="btn btn-primary">Registrar Cliente</a></td>
-        </tr>
+        <br>
+        <input type="submit" class="btn btn-success" value="Cliente"> 
+        <a href="#" class="btn btn-danger">Sin datos</a>
+        <a href="#" class="btn btn-primary">Registrar Cliente</a>
     </div>
 </div>
 </form>

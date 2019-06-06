@@ -1,5 +1,5 @@
 <?php 
-$con =  new mysqli('localhost','root','', 'crud' );
+$con =  new mysqli('localhost','root','', 'sysbasic' );
 /*if(isset($con)){
     echo "conexion establecida ";
 }else{

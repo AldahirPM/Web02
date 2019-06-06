@@ -5,6 +5,8 @@ if(isset($_POST)){
     $nombre = isset($_POST['producto']) ? $_POST['producto'] : false;
     $precio = isset($_POST['precio']) ? $_POST['precio'] : false;
     $categoria =isset($_POST['categoria']) ? (int)($_POST['categoria']):false;
+    $cantidad =isset($_POST['cantidad']) ? (int)($_POST['cantidad']):false;
+
 
     $error= array();
     if(!empty($nombre)  && !is_numeric($nombre) &&  !preg_match("/[0-9]/", $nombre )){
@@ -20,13 +22,19 @@ if(isset($_POST)){
         $precio_validado = false;
         $error['precio']= "Por favor indique el precio.";
     }
+    if(!empty($cantidad) && is_numeric($cantidad)){
+        $cantidad_validada = true ;
+    }else{
+        $cantidad_validada = false;
+        $error['cantidad']= "Ingrese una cantidad";
+    }
     
     $guardar_datos =  false;
     if(count($error) == 0)
     {
         $guardar_datos =  true;
 
-        $sql = "insert into producto values(null, '$nombre',$precio , $categoria)";
+        $sql = "insert into producto values(null, '$nombre',$precio , $categoria,1, $cantidad , CURDATE())";
         $consulta =mysqli_query($con , $sql); 
         
         if($consulta){-

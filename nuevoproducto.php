@@ -31,9 +31,13 @@
                 <span class="input-group-text">S/</span>
             </div>
             <input type="text" class="form-control"  name="precio"  placeholder=""> 
-            </div>
-            
-        <?php echo isset($_SESSION['errores']) ?  mostrarError($_SESSION['errores'],'precio'): '';?>
+        </div>    
+        <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'],'precio'): '';?>
+        <div class="form-group">
+            <label for="cantidad">Cantidad:</label>
+            <input type="text" class="form-control" name="cantidad" >   
+        </div>
+        <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'],'cantidad') : '';?>
         <div class="combo">
         <label for="categoria">Categoria:</label>
         <select class="form-control form-control-sm" id="" name="categoria"> 

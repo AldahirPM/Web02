@@ -27,7 +27,9 @@
                 <th>ID</th>
                 <th>Nombre Producto</th>
                 <th>Categoria</th>
-                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Precio.U</th>
+                <th>Precio.T</th>
                 <th>Opciones</th>
             </tr>
         </thead>
@@ -40,7 +42,9 @@
                 <td><?= $_SESSION['producto']['id'] ?></td>
                 <td><?= $_SESSION['producto']['nombre'] ?></td>
                 <td><?= $_SESSION['producto']['nomcat']?></td>
+                <td><?=$_SESSION['producto']['cant_pro']?></td>
                 <td>S/<?=$_SESSION['producto']['precio']?></td>
+                <td>S/<?=$_SESSION['producto']['Total']?></td>
                 <td class="text-center a">
                     <a href="editarproducto.php?id=<?=$_SESSION['producto']['id']?>" class="btn btn-success"  >E</a>
                     <a href="eliminarproducto.php?id=<?=$_SESSION['producto']['id']?>" class="btn btn-danger">X</a>
@@ -50,19 +54,28 @@
             <?php else:?>
                 <tr>
                     <td>#</td>
-                    <td>No</td>
-                    <td>realizo </td>
-                    <td>compra</td>
+                    <td>#</td>
+                    <td>NO </td>
+                    <td>REALIZO</td>
+                    <td>Compra</td>
+                    <td>#</td>
                     <td>#</td>
                 </tr>           
             <?php endif; ?>
             <tr>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
                 <td><strong>TOTAL</strong></td>
-                <?php  while($totalproducto = mysqli_fetch_assoc($total)):?>
-                <td><strong>S/<?= round(($totalproducto['total']),2)?></strong></td>
-                <td><a href="datoscompra.php" class="btn btn-secondary">Facturar</a></td>
+                <?php  while($totalproducto = mysqli_fetch_assoc($total)):?>    
+                    <?php if(empty($totalproducto['Total'])):?>
+                            <td><strong>S/<?= round(($totalproducto['Total']),2)?></strong></td>
+                            <td>-</td>
+                    <?php else: ?>
+                        <td><strong>S/<?= round(($totalproducto['Total']),2)?></strong></td>
+                        <td><a href="datoscompra.php" class="btn btn-secondary">Facturar</a></td>
+                    <?php endif; ?>
                 <?php endwhile;?>
             </tr>
         </tbody>

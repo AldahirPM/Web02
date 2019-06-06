@@ -1,4 +1,4 @@
-create database basico
+create database sys_basic
 create table producto
 (
 id int primary key auto_increment,
@@ -6,6 +6,8 @@ nombre  varchar(50) not null,
 precio float ,
 id_cat int ,
 id_usu int ,
+cant_pro int,
+fecha_pro  date,
 foreign key (id_cat) references categoria(id_categoria),
 foreign key (id_usu) references usuario(id_u)
 )
@@ -21,10 +23,9 @@ create table usuario
  dni int,
  nom varchar(20),
  telefono int,
- fecha date
+ fecha_ingre date
 )
 select * from producto  
-delete  * from producto
 insert into usuario values(null,71768862,'Pedro Aldahir Gayoso Machaca',5320609, CURDATE() )
 insert into usuario values(null,71768861,'Saldaña Collantes',5320609, CURDATE() )
 insert into usuario values(null,71768863,'Flores Valencia',5320609, NOW() )

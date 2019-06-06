@@ -32,7 +32,7 @@ function borrarMensaje(){
     return $borrar;
   }
 function mostrarProductos($con ){
-    $sql= "select p.id, p.nombre, p.precio, c.nomcat from producto p inner join categoria c on c.id_categoria = p.id_cat   order by id ";
+    $sql= "select  p.id , p.nombre , c.nomcat  ,p.cant_pro, p.precio , (p.precio * p.cant_pro)as Total  from producto p  inner join  categoria c  on c.id_categoria =  p.id_cat inner join usuario u on u.id_u = p.id_usu order by id ";
     $producto=mysqli_query($con , $sql);
 
     $resultado = array();
@@ -43,7 +43,7 @@ function mostrarProductos($con ){
     return $resultado;
 }
 function sumarProductos($con){
-    $sql= "select sum(precio) as total from producto";
+    $sql= "select sum(precio * cant_pro)  as Total FROM producto";
     $producto=mysqli_query($con , $sql);
     $resultado = $producto;
     return $resultado;
