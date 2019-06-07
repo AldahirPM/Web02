@@ -1,25 +1,35 @@
 <?php require_once 'includes/header.php'  ?>
 <?php require_once 'includes/conexion.php'  ?>
 <?php require_once 'includes/funciones.php'?>
-<?php $productos =  mostrarProductos($con) ?>
+<?php 
+if(isset($_GET['id'])){
+$usuario = mostrarUsuario($con,$_GET['id']) ;
+}else{
+$usuario=false ;
+}
+?>
+<?php $productos =  mostrarProductos($con,$_GET['id']) ?>
 <?php $total =  sumarProductos($con); ?>
 <br>
 <div class="container">
-    <h1>Tus Produtos:</h1>
+<h1>Tus Produtos:</h1>
+   
+
     <div class="form-row">
         <div class="col">
-            <label for=""><strong>Nombre: Pedro Aldahir Gayoso Machaca</strong></label>
+            <label for=""><strong>Nombre:   <?php echo isset($usuario['nom']) ? $usuario['nom'] : '-'?> </strong></label>
             <br>
-            <label for=""><strong>DNI: 701768858</strong></label>
+            <label for=""><strong>DNI: <?php echo isset($usuario['dni']) ? $usuario['dni'] : '-'?></strong></label>
             <br>
             <a href="nuevoproducto.php" class="btn btn-primary">Agregar +</a>
         </div>
         <div class="col">
-            <label for=""><strong>Telefono: +51 5411477</strong></label>
+            <label for=""><strong>Telefono: <?php echo isset($usuario['telefono']) ? $usuario['telefono'] : '-'?></strong></label>
             <br>
-            <label for=""><strong>Registrado el: 1999-57-96</strong></label>
+            <label for=""><strong>Fecha de inscripcion:  <?php echo isset($usuario['fecha']) ? $usuario['fecha'] : '-'?></strong></label>
         </div>
     </div>
+    
     <br>
     <table class="table custab" >
         <thead class=" text-center">

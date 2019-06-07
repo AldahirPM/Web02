@@ -50,6 +50,5 @@ if(isset($_POST)){
         $_SESSION['errores'] = $error;
     }
 } 
-header("location:nuevoproducto.php");
- 
+
 ?>

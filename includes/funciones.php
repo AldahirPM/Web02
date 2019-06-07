@@ -31,8 +31,8 @@ function borrarMensaje(){
     
     return $borrar;
   }
-function mostrarProductos($con ){
-    $sql= "select  p.id , p.nombre , c.nomcat  ,p.cant_pro, p.precio , (p.precio * p.cant_pro)as Total  from producto p  inner join  categoria c  on c.id_categoria =  p.id_cat inner join usuario u on u.id_u = p.id_usu order by id ";
+function mostrarProductos($con , $id ){
+    $sql= "select  p.id , p.nombre , c.nomcat  ,p.cant_pro, p.precio , p.id_usu , (p.precio * p.cant_pro)as Total  from producto p  inner join  categoria c  on c.id_categoria =  p.id_cat inner join usuario u on u.id_u = p.id_usu where p.id_usu = $id order by id  ";
     $producto=mysqli_query($con , $sql);
 
     $resultado = array();
@@ -58,7 +58,18 @@ function conseguirCategorias($con){
     return $resultado;
 }
 function mostrarProducto($con , $id){
-    $sql= "select *  from  producto where id  = $id";
+    $sql= "select *  from  producto where id_usu  = $id";
+    $producto=mysqli_query($con , $sql);
+    $resultado = array();
+    if($producto && mysqli_num_rows($producto)){
+        $resultado = mysqli_fetch_assoc($producto) ;   
+      
+    }
+    return $resultado;
+}
+//mostrar usuario DNI
+function mostrarUsuario($con , $id){
+    $sql= "select *  from  usuario where id_u = $id";
     $producto=mysqli_query($con , $sql);
     $resultado = array();
     if($producto && mysqli_num_rows($producto)){
