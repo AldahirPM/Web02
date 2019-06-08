@@ -1,7 +1,8 @@
 <?php 
  require_once 'includes/conexion.php';
 if(isset($_POST)){
-    
+   
+
     $nombre = isset($_POST['producto']) ? $_POST['producto'] : false;
     $precio = isset($_POST['precio']) ? $_POST['precio'] : false;
     $categoria =isset($_POST['categoria']) ? (int)($_POST['categoria']):false;
@@ -33,13 +34,26 @@ if(isset($_POST)){
     if(count($error) == 0)
     {
         $guardar_datos =  true;
+        
+        if(isset($_GET['idcliente'])){
+            $idcli=$_GET['idcliente'];
+            $sql = "insert into producto values(null, '$nombre',$precio , $categoria,$idcli, $cantidad , CURDATE())";
+            
 
-        $sql = "insert into producto values(null, '$nombre',$precio , $categoria,1, $cantidad , CURDATE())";
-        $consulta =mysqli_query($con , $sql); 
-        
-        if($consulta){-
-            $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en ".'<a href="index.php">CRUD-PEDRO</a>';
-        
+        }elseif(!isset($_GET['idcliente'])){
+            
+            $sql = "insert into producto values(null, '$nombre',$precio , $categoria,null, $cantidad , CURDATE())";
+        }
+            $consulta =mysqli_query($con , $sql); 
+        if($consulta){
+
+            if(isset($_GET['idcliente'])){
+               //resolver problema de envios
+                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en ".'<a href="index.php?idcli=$idcli">CRUD-PEDRO</a>';
+
+            }else{
+                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en ".'<a href="index.php">CRUD-PEDRO</a>';
+            }
         }
         else{
             $_SESSION['errores']['general'] = "Fallo en la insercion  del producto";

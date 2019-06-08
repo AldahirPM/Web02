@@ -31,10 +31,16 @@ function borrarMensaje(){
     
     return $borrar;
   }
-function mostrarProductos($con , $id ){
-    $sql= "select  p.id , p.nombre , c.nomcat  ,p.cant_pro, p.precio , p.id_usu , (p.precio * p.cant_pro)as Total  from producto p  inner join  categoria c  on c.id_categoria =  p.id_cat inner join usuario u on u.id_u = p.id_usu where p.id_usu = $id order by id  ";
+function mostrarProductos($con , $id = null , $sincod= null){
+    $sql= "select  p.id , p.nombre , c.nomcat  ,p.cant_pro, p.precio , p.id_usu , round((p.precio * p.cant_pro),2)as Total  from producto p  inner join  categoria c  on c.id_categoria =  p.id_cat ";
+    if(!empty($sincod)){
+        $sql.="where p.id_usu  is null";
+    }
+    if(!empty($id)){
+        $sql.="where p.id_usu = $id";
+    }
+    $sql.=" order by id";
     $producto=mysqli_query($con , $sql);
-
     $resultado = array();
     if($producto && mysqli_num_rows($producto) >=1){
         $resultado = $producto;   
@@ -42,8 +48,14 @@ function mostrarProductos($con , $id ){
     }
     return $resultado;
 }
-function sumarProductos($con){
-    $sql= "select sum(precio * cant_pro)  as Total FROM producto";
+function sumarProductos($con, $id = null  ,$sincod= null ){
+    $sql= "select round(sum(precio * cant_pro),2)  as Total FROM producto ";
+    if(!empty($sincod)){
+        $sql.="where id_usu  is null";
+    }
+    if(!empty($id)){
+        $sql.="where id_usu = $id";
+    }
     $producto=mysqli_query($con , $sql);
     $resultado = $producto;
     return $resultado;

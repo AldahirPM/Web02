@@ -2,14 +2,23 @@
 <?php require_once 'includes/conexion.php'  ?>
 <?php require_once 'includes/funciones.php'?>
 <?php 
+
 if(isset($_GET['id'])){
 $usuario = mostrarUsuario($con,$_GET['id']) ;
+$total =  sumarProductos($con , $_GET['id']);
+$productos =  mostrarProductos($con,$_GET['id']);
+$usu= $_GET['id'];
 }else{
-$usuario=false ;
+
+ $usuario = false;
+ $total =  sumarProductos($con , false, true);
+ $productos =  mostrarProductos($con, false , true);
+ $usu = false ;
 }
+
+
 ?>
-<?php $productos =  mostrarProductos($con,$_GET['id']) ?>
-<?php $total =  sumarProductos($con); ?>
+
 <br>
 <div class="container">
 <h1>Tus Produtos:</h1>
@@ -21,7 +30,13 @@ $usuario=false ;
             <br>
             <label for=""><strong>DNI: <?php echo isset($usuario['dni']) ? $usuario['dni'] : '-'?></strong></label>
             <br>
-            <a href="nuevoproducto.php" class="btn btn-primary">Agregar +</a>
+
+           <?php if(!isset($_GET['id'])): ?>
+                <a href="nuevoproducto.php" class="btn btn-primary">Agregar +</a>
+            <?php else: ?>
+                <a href="nuevoproducto.php?idcli=<?=$usu?>" class="btn btn-primary">Agregar +</a>
+            <?php endif;?> 
+        
         </div>
         <div class="col">
             <label for=""><strong>Telefono: <?php echo isset($usuario['telefono']) ? $usuario['telefono'] : '-'?></strong></label>
@@ -47,17 +62,24 @@ $usuario=false ;
             <?php
             if($productos && mysqli_num_rows($productos)>=1):
             while($producto = mysqli_fetch_assoc($productos)):?>
-            <?php  $_SESSION['producto'] = $producto  ?>
+            <?php  $product = $producto  ?>
             <tr>
-                <td><?= $_SESSION['producto']['id'] ?></td>
-                <td><?= $_SESSION['producto']['nombre'] ?></td>
-                <td><?= $_SESSION['producto']['nomcat']?></td>
-                <td><?=$_SESSION['producto']['cant_pro']?></td>
-                <td>S/<?=$_SESSION['producto']['precio']?></td>
-                <td>S/<?=$_SESSION['producto']['Total']?></td>
+                <td><?= $product['id'] ?></td>
+                <td><?= $product['nombre'] ?></td>
+                <td><?= $product['nomcat']?></td>
+                <td><?=$product['cant_pro']?></td>
+                <td>S/<?=$product['precio']?></td>
+                <td>S/<?=$product['Total']?></td>
                 <td class="text-center a">
-                    <a href="editarproducto.php?id=<?=$_SESSION['producto']['id']?>" class="btn btn-success"  >E</a>
-                    <a href="eliminarproducto.php?id=<?=$_SESSION['producto']['id']?>" class="btn btn-danger">X</a>
+                    <a href="editarproducto.php?&idpro=<?=$producto['id']?>" class="btn btn-success"  >E</a>
+                    <?php if(!isset($_GET['id'])): ?>
+                    
+                        <a href="eliminarproducto.php?idpro=<?=$producto['id']?>" class="btn btn-danger">X</a>
+                    <?php else: ?>
+                       <a href="eliminarproducto.php?idpro=<?=$producto['id']?>&idcli=<?=$usu?>" class="btn btn-danger">X</a>
+                    <?php endif;?>
+                    
+                   
                 </td>
             </tr>
             <?php endwhile;?>
@@ -83,7 +105,7 @@ $usuario=false ;
                             <td><strong>S/<?= round(($totalproducto['Total']),2)?></strong></td>
                             <td>-</td>
                     <?php else: ?>
-                        <td><strong>S/<?= round(($totalproducto['Total']),2)?></strong></td>
+                        <td><strong>S/<?= ($totalproducto['Total'])?></strong></td>
                         <td><a href="datoscompra.php" class="btn btn-secondary">Facturar</a></td>
                     <?php endif; ?>
                 <?php endwhile;?>

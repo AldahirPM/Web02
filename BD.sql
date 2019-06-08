@@ -61,4 +61,4 @@ inner join usuario u on u.id_u = p.id_usu
 
 select  p.id , p.nombre , c.nomcat  ,p.cant_pro, p.precio , p.id_usu , (p.precio * p.cant_pro)as Total  from producto p  
 inner join  categoria c  on c.id_categoria =  p.id_cat 
-inner join usuario u on u.id_u = p.id_usu where p.id_usu = $id order by id  
+inner join usuario u on u.id_u = p.id_usu where p.id_usu = $id order by id  ;

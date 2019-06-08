@@ -4,8 +4,9 @@
 <body>
 <br>
 <br> 
-<form action="nuevo-producto.php" method="POST"> 
 
+<form action="nuevo-producto.php?idcliente=<?=$_GET['idcli']?>" method="POST"> 
+    
     <div class="container center">
         <?php if(isset($_SESSION['completado'])):?>
                         
@@ -16,9 +17,7 @@
                 <div class="alert alert-danger"> 
                     <?=  $_SESSION['errores']['general'];?>   
                 </div>
-            <?php endif;?>
-
-
+            <?php endif;?> 
     <h1>Ingresa un nuevo producto:</h1>
         <div class="form-group">
             <label for="producto">Nombre de Producto</label>
