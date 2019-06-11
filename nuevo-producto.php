@@ -37,31 +37,33 @@ if(isset($_POST)){
         
         if(isset($_GET['idcliente'])){
             $idcli=$_GET['idcliente'];
-            $sql = "insert into producto values(null, '$nombre',$precio , $categoria,$idcli, $cantidad , CURDATE())";
+            $sql = "insert into producto values(null, '$nombre',$precio , $categoria,$idcli, $cantidad , now())";
             
 
         }elseif(!isset($_GET['idcliente'])){
             
-            $sql = "insert into producto values(null, '$nombre',$precio , $categoria,null, $cantidad , CURDATE())";
+            $sql = "insert into producto values(null, '$nombre',$precio , $categoria,null, $cantidad , now())";
         }
             $consulta =mysqli_query($con , $sql); 
         if($consulta){
 
             if(isset($_GET['idcliente'])){
                //resolver problema de envios
-                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en ".'<a href="index.php?idcli=$idcli">CRUD-PEDRO</a>';
+                header("location:nuevoproducto.php?idcli=".$idcli);
+                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en "."<a href='index.php?id=$idcli'>CRUD-PEDRO</a>";
+                
 
             }else{
-                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en ".'<a href="index.php">CRUD-PEDRO</a>';
+                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en "."<a href='index.php'>CRUD-PEDRO</a>";
+                header("location:nuevoproducto.php");
             }
         }
         else{
             $_SESSION['errores']['general'] = "Fallo en la insercion  del producto";
         }
         
-    }else{
-
-        $_SESSION['errores'] = $error;
+    }else{ 
+           $_SESSION['errores'] = $error;
     }
 } 
 

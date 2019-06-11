@@ -51,7 +51,7 @@ $usu= $_GET['id'];
             <tr>   
                 <th>ID</th>
                 <th>Nombre Producto</th>
-                <th>Categoria</th>
+                <!-- <th>Categoria</th> -->
                 <th>Cantidad</th>
                 <th>Precio.U</th>
                 <th>Precio.T</th>
@@ -66,7 +66,7 @@ $usu= $_GET['id'];
             <tr>
                 <td><?= $product['id'] ?></td>
                 <td><?= $product['nombre'] ?></td>
-                <td><?= $product['nomcat']?></td>
+                <!-- <td><?= $product['nomcat']?></td> -->
                 <td><?=$product['cant_pro']?></td>
                 <td>S/<?=$product['precio']?></td>
                 <td>S/<?=$product['Total']?></td>
@@ -87,7 +87,7 @@ $usu= $_GET['id'];
                 <tr>
                     <td>#</td>
                     <td>#</td>
-                    <td>NO </td>
+                    <!-- <td>NO </td> -->
                     <td>REALIZO</td>
                     <td>Compra</td>
                     <td>#</td>
@@ -96,7 +96,7 @@ $usu= $_GET['id'];
             <?php endif; ?>
             <tr>
                 <td></td>
-                <td></td>
+                <!-- <td></td> -->
                 <td></td>
                 <td></td>
                 <td><strong>TOTAL</strong></td>
