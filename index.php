@@ -15,8 +15,6 @@ $usu= $_GET['id'];
  $productos =  mostrarProductos($con, false , true);
  $usu = false ;
 }
-
-
 ?>
 
 <br>
@@ -77,9 +75,7 @@ $usu= $_GET['id'];
                         <a href="eliminarproducto.php?idpro=<?=$producto['id']?>" class="btn btn-danger">X</a>
                     <?php else: ?>
                        <a href="eliminarproducto.php?idpro=<?=$producto['id']?>&idcli=<?=$usu?>" class="btn btn-danger">X</a>
-                    <?php endif;?>
-                    
-                   
+                    <?php endif;?> 
                 </td>
             </tr>
             <?php endwhile;?>
@@ -106,7 +102,7 @@ $usu= $_GET['id'];
                             <td>-</td>
                     <?php else: ?>
                         <td><strong>S/<?= ($totalproducto['Total'])?></strong></td>
-                        <td><a href="datoscompra.php" class="btn btn-secondary">Facturar</a></td>
+                        <td><a href="facturar.php" class="btn btn-secondary">Facturar</a></td>
                     <?php endif; ?>
                 <?php endwhile;?>
             </tr>
