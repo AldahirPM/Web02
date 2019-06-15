@@ -12,6 +12,7 @@ if(isset($_GET)){
         $nombre_validado= true;
     }else{ 
         $nombre_validado = false ;
+        
         $error['nombre']= "Por favor ingrese el nombre del producto";
     }
     if(!empty($precio) && is_numeric($precio) ){
@@ -20,28 +21,50 @@ if(isset($_GET)){
     else{
         $precio=0;
         $precio_validado = false;
+        
         $error['precio'] = "Por favor ingrese el precio del producto ";
     }
     $guardar_producto = false;
 
     if(count($error) == 0){
         $guardar_producto= true ;
+        if(isset($_GET['idcliente'])){
+            $idcli=$_GET['idcliente'];
+       
+            $sql = "update producto set  nombre = '$nombre'  , precio =  $precio ,id_usu= $idcli , id_cat = $categoria where id = $id";
 
-        $sql = "update producto set  nombre = '$nombre'  , precio =  $precio , id_cat = $categoria where id = $id";
+
+        }elseif(!isset($_GET['idcliente'])){
+            
+            $sql = "update producto set  nombre = '$nombre'  , precio =  $precio ,id_usu= null , id_cat = $categoria where id = $id";
+        }
+
         $consulta = mysqli_query($con , $sql);
         if($consulta){
 
-            $_SESSION['completado'] = "¡Su producto se  guardo con exito!, puedes ver tu producto en ".'<a href="index.php">CRUD-PEDRO</a>';
-        }else{
-            $_SESSION['errores']['general'] = "Fallo en la insercion del producto ";
+            if(isset($_GET['idcliente'])){
+               //resolver problema de envios
+                header("location:editarproducto.php?idcli=".$idcli);
+                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en "."<a href='index.php?id=$idcli'>CRUD-PEDRO</a>";
+                
+
+            }else{
+                header("location:editarproducto.php?idpro=$id");
+                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en "."<a href='index.php'>CRUD-PEDRO</a>";
+                
+            }
+        }
+        else{
+            
+            $_SESSION['errores']['general'] = "Fallo en la insercion  del producto";
+            
         }
 
-
     }else{
-
+        header("location:editarproducto.php?idpro=$id");
         $_SESSION['errores']= $error;
     }
 } 
-header("Location: editarproducto.php?id=$id");
+
 
 ?>

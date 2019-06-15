@@ -71,7 +71,7 @@ function conseguirCategorias($con){
     return $resultado;
 }
 function mostrarProducto($con , $id){
-    $sql= "select *  from  producto where id_usu  = $id";
+    $sql= "select *  from  producto where id = $id";
     $producto=mysqli_query($con , $sql);
     $resultado = array();
     if($producto && mysqli_num_rows($producto)){

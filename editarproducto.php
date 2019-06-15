@@ -2,7 +2,8 @@
 <?php require_once 'includes/conexion.php'  ?>
 <?php require_once 'includes/funciones.php'?>
 <body>
-<?php   $mostrar= mostrarProducto($con , $_GET['id']);        
+<?php   $mostrar= mostrarProducto($con , $_GET['idpro']);  
+
 ?>
 <br>
 <br>

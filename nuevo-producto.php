@@ -37,12 +37,12 @@ if(isset($_POST)){
         
         if(isset($_GET['idcliente'])){
             $idcli=$_GET['idcliente'];
-            $sql = "insert into producto values(null, '$nombre',$precio , $categoria,$idcli, $cantidad , now())";
+            $sql = "insert into producto values(null, '$nombre',$precio , $categoria,$idcli, $cantidad )";
             
 
         }elseif(!isset($_GET['idcliente'])){
             
-            $sql = "insert into producto values(null, '$nombre',$precio , $categoria,null, $cantidad , now())";
+            $sql = "insert into producto values(null, '$nombre',$precio , $categoria,null, $cantidad )";
         }
             $consulta =mysqli_query($con , $sql); 
         if($consulta){
