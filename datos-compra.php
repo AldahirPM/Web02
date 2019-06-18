@@ -9,8 +9,7 @@ if($_POST){
         $buscador = true;
     }else{
         $buscador=  false;
-        $error['dni']= "Escribe tu dni";
-        
+        $error['dni']= "Escribe tu dni";     
     }
     $buscar_dni = false;
     if(count($error) == 0 ){
@@ -29,8 +28,7 @@ if($_POST){
             if(isset($verifica)){
                 $_SESSION['errores']['general'] = "Usted no es cliente";
             }
-        }
-        
+        }   
     }else{
         $_SESSION['errores'] = $error;
         header("location:datoscompra.php");

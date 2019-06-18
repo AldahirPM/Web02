@@ -28,13 +28,13 @@ if(isset($_GET)){
 
     if(count($error) == 0){
         $guardar_producto= true ;
-        if(isset($_GET['idcliente'])){
-            $idcli=$_GET['idcliente'];
+        if(isset($_GET['idcli'])){
+            $idcli=$_GET['idcli'];
        
             $sql = "update producto set  nombre = '$nombre'  , precio =  $precio ,id_usu= $idcli , id_cat = $categoria where id = $id";
 
 
-        }elseif(!isset($_GET['idcliente'])){
+        }elseif(!isset($_GET['idcli'])){
             
             $sql = "update producto set  nombre = '$nombre'  , precio =  $precio ,id_usu= null , id_cat = $categoria where id = $id";
         }
@@ -42,9 +42,9 @@ if(isset($_GET)){
         $consulta = mysqli_query($con , $sql);
         if($consulta){
 
-            if(isset($_GET['idcliente'])){
+            if(isset($_GET['idcli'])){
                //resolver problema de envios
-                header("location:editarproducto.php?idcli=".$idcli);
+                header("location:editarproducto.php?idpro=$id&idcli=$idcli");
                 $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en "."<a href='index.php?id=$idcli'>CRUD-PEDRO</a>";
                 
 

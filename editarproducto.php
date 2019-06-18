@@ -2,22 +2,24 @@
 <?php require_once 'includes/conexion.php'  ?>
 <?php require_once 'includes/funciones.php'?>
 <body>
-<?php   $mostrar= mostrarProducto($con , $_GET['idpro']);  
-
-?>
+<?php   $mostrar= mostrarProducto($con , $_GET['idpro']);  ?>
 <br>
 <br>
-<form action="editar-producto.php?id=<?=$mostrar['id']?>" method="POST">
+<?php if(isset($_GET['idcli'])): ?>
+    <form action="editar-producto.php?id=<?=$mostrar['id']?>&idcli=<?=$_GET['idcli']?>" method="POST">
+<?php else:?>
+    <form action="editar-producto.php?id=<?=$mostrar['id']?>" method="POST">
+<?php endif;?>
     <div class="container center">
     <?php if(isset($_SESSION['completado'])):?>
-         <div class="alert alert-primary"> 
-                            <?=  $_SESSION['completado'];?>   
-                        </div>
-                        <?php elseif(isset($_SESSION['errores']['general'])):?>
-                            <div class="alert alert-danger"> 
-                                <?=  $_SESSION['errores']['general'];?>   
-                            </div>
-                        <?php endif;?>
+        <div class="alert alert-primary"> 
+            <?=$_SESSION['completado'];?>   
+        </div>
+    <?php elseif(isset($_SESSION['errores']['general'])):?>
+        <div class="alert alert-danger"> 
+            <?=  $_SESSION['errores']['general'];?>   
+        </div>
+    <?php endif;?>
         
         <h1>Edita tu Producto </h1>
             <div class="form-group">

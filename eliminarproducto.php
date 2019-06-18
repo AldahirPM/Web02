@@ -4,7 +4,11 @@ if(isset($_GET)){
 
     $id =$_GET['idpro'];
     $sql="delete from producto where id = $id";
+    $sqldos="delete from insert_producto where id = $id";
     $eliminar = mysqli_query($con , $sql);
+    $eliminardos = mysqli_query($con , $sqldos);
+
+
     if(isset($_GET['idcli'])){
         header("Location: index.php?id=".$_GET['idcli']);
         

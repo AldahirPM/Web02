@@ -69,11 +69,12 @@ $usu= $_GET['id'];
                 <td>S/<?=$product['precio']?></td>
                 <td>S/<?=$product['Total']?></td>
                 <td class="text-center a">
-                    <a href="editarproducto.php?&idpro=<?=$producto['id']?>" class="btn btn-success"  >E</a>
+                   
                     <?php if(!isset($_GET['id'])): ?>
-                    
+                        <a href="editarproducto.php?idpro=<?=$producto['id']?>" class="btn btn-success"  >E</a>
                         <a href="eliminarproducto.php?idpro=<?=$producto['id']?>" class="btn btn-danger">X</a>
                     <?php else: ?>
+                        <a href="editarproducto.php?idpro=<?=$producto['id']?>&idcli=<?=$usu?>" class="btn btn-success"  >E</a>
                        <a href="eliminarproducto.php?idpro=<?=$producto['id']?>&idcli=<?=$usu?>" class="btn btn-danger">X</a>
                     <?php endif;?> 
                 </td>
