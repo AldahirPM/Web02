@@ -3,17 +3,22 @@
 <?php require_once 'includes/funciones.php'?>
 <?php 
 
-if(isset($_GET['id'])){
-$usuario = mostrarUsuario($con,$_GET['id']) ;
-$total =  sumarProductos($con , $_GET['id']);
-$productos =  mostrarProductos($con,$_GET['id']);
-$usu= $_GET['id'];
-}else{
+if(!empty($_GET['id'])){
+    $usuario = mostrarUsuario($con,$_GET['id']) ;
+    $total =  sumarProductos($con , $_GET['id']);
+    $productos =  mostrarProductos($con,$_GET['id']);
+    $usu= $_GET['id'];
 
- $usuario = false;
- $total =  sumarProductos($con , false, true);
- $productos =  mostrarProductos($con, false , true);
- $usu = false ;
+}elseif(!isset($_GET['id'])){
+
+    if(!empty($_GET['dato'])){
+        $usuario = false;
+        $total =  sumarProductos($con , false, true);
+        $productos =  mostrarProductos($con, false , true);
+        $usu = false ;
+    }else{
+        header("location:datoscompra.php");
+    }
 }
 ?>
 

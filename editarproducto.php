@@ -2,7 +2,10 @@
 <?php require_once 'includes/conexion.php'  ?>
 <?php require_once 'includes/funciones.php'?>
 <body>
-<?php   $mostrar= mostrarProducto($con , $_GET['idpro']);  ?>
+<?php   $mostrar= mostrarProducto($con,$_GET['idpro']); 
+if(!isset($_GET['idpro'])){
+    header("Location:datoscompra.php");
+} ?>
 <br>
 <br>
 <?php if(isset($_GET['idcli'])): ?>
@@ -27,7 +30,6 @@
                 <input type="text" class="form-control" name="producto"  value="<?=$mostrar['nombre']?>">  
             </div>
             <?php  echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'],'nombre') :''?>
-        
             <div>
                 <label for="precio">Precio:</label>
                     <div class="input-group mb-3" >
@@ -56,6 +58,5 @@
     </div>
     <?php borrarMensaje(); ?>
 </form>
-
 </body>
     

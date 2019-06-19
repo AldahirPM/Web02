@@ -13,7 +13,7 @@ if(isset($_GET)){
         header("Location: index.php?id=".$_GET['idcli']);
         
     }else{
-        header("Location: index.php");
+        header("Location: index.php?dato=pee4o");
     }
 }
 ?>

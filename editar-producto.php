@@ -50,7 +50,7 @@ if(isset($_GET)){
 
             }else{
                 header("location:editarproducto.php?idpro=$id");
-                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en "."<a href='index.php'>CRUD-PEDRO</a>";
+                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en "."<a href='index.php?dato=pee4o'>CRUD-PEDRO</a>";
                 
             }
         }

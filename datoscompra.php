@@ -26,8 +26,9 @@
         
 
         <input type="submit" class="btn btn-success" value="Cliente"> 
-        <a href="index.php" class="btn btn-danger">Sin datos</a>
-        <a href="#" class="btn btn-primary">Registrar Cliente</a>
+        
+        <a href="index.php?dato=pee4o" class="btn btn-danger">Sin datos</a>
+        <a href="registracliente.php" class="btn btn-primary">Registrar Cliente</a>
     </div>
 </div>
 </form>

@@ -54,7 +54,7 @@ if(isset($_POST)){
                 
 
             }else{
-                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en "."<a href='index.php'>CRUD-PEDRO</a>";
+                $_SESSION['completado'] ="¡Su producto se  guardo con exito!, puedes ver tu producto en "."<a href='index.php?dato=pee4o'>CRUD-PEDRO</a>";
                 header("location:nuevoproducto.php");
             }
         }

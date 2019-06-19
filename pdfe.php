@@ -7,6 +7,7 @@ ob_start();
 require './index.php';
 $html= ob_get_clean();
 $mpdf = new \Mpdf\Mpdf([
+    "format" => "",
     'default_font' => 'tharlon',
     'mode' => 'c',
     'margin_left'=>12,
@@ -19,7 +20,7 @@ $mpdf = new \Mpdf\Mpdf([
 $mpdf->allow_charset_conversion=true;
 //$mpdf->WriteHTML(file_get_contents('public/assets/matricula/css/boleta.css'),1);
 //$mpdf->WriteHTML($html,0);
-$mpdf->setHtmlHeader("Soy Pedro");
+//$mpdf->setHtmlHeader("Soy Pedro");
 $mpdf->setHtmlFooter(utf8_encode('
           <table style="width:100%;font-size:9px;">
                   <tr>
