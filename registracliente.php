@@ -5,6 +5,12 @@
 <form action="registra-cliente.php" method="POST">
     <div class="container">
     <h1>Se nuestro socio:</h1>
+        <?php if(isset($_SESSION['existe'])):?> 
+            <div class="alert alert-danger"> 
+                <?=  $_SESSION['existe'];?>   
+            </div>
+        
+        <?php endif;?> 
         <?php if(isset($_SESSION['completado'])):?> 
             <div class="alert alert-primary"> 
                 <?=  $_SESSION['completado'];?>   

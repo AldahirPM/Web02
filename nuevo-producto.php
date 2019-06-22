@@ -66,5 +66,5 @@ if(isset($_POST)){
            $_SESSION['errores'] = $error;
     }
 } 
-
+var_dump($consulta);
 ?>
