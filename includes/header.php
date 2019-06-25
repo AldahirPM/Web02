@@ -15,6 +15,6 @@
 </head>
 <body>
 <nav class="navbar">
-        <!-- <a href="index.php" class="navbar-brand a btn btn-success" >CRUD-PEDRO </a> -->
+        <label class="navbar-brand a " >TAMBO Independecia</label>
     <h2 class="navbar-brand a" >Fecha:  <?php echo date("d/m/Y"); ?></h2>
 </nav>

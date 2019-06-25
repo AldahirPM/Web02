@@ -10,6 +10,7 @@ function mostrarError($error, $campo)
 function borrarMensaje(){
     $borrar=false;
     $_SESSION['completado']=null;
+    $_SESSION['usuexiste']=null;
    
       if(isset($_SESSION['errores']))
       {

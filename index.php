@@ -29,6 +29,10 @@ if(!empty($_GET['id'])){
 
     <div class="form-row">
         <div class="col">
+            <label for=""><strong>Empresa: Tambo S.A.C </strong></label>
+            <br>
+            <label for=""><strong>Local: Tambo Independencia </strong></label>
+            <br>
             <label for=""><strong>Nombre:   <?php echo isset($usuario['nom']) ? $usuario['nom'] : '-'?> </strong></label>
             <br>
             <label for=""><strong>DNI: <?php echo isset($usuario['dni']) ? $usuario['dni'] : '-'?></strong></label>
@@ -42,6 +46,10 @@ if(!empty($_GET['id'])){
         
         </div>
         <div class="col">
+            <label for=""><strong>N° RUC: 10103830482</strong></label>
+            <br>
+            <label for=""><strong></strong></label>
+            <br>
             <label for=""><strong>Telefono: <?php echo isset($usuario['telefono']) ? $usuario['telefono'] : '-'?></strong></label>
             <br>
             <label for=""><strong>Fecha de inscripcion:  <?php echo isset($usuario['fecha']) ? $usuario['fecha'] : '-'?></strong></label>

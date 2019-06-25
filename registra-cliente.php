@@ -14,7 +14,7 @@ if(isset($_POST))
         $nombre_validado = false;
         $error['nombre'] ="Escribe tu nombre";
     }
-    if(!empty($nombre) && is_numeric($dni)){
+    if(!empty($dni) && is_numeric($dni)){
         $dni_validado = true;
 
     }else{
@@ -31,32 +31,26 @@ if(isset($_POST))
     $guardar_cliente = false ; 
     if(count($error) == 0){
         $guardar_cliente = true;
+        
         $vali_dni = "select* from usuario  where  dni =  $dni";
         $verifica = mysqli_query($con , $vali_dni);
 
         if($verifica && mysqli_num_rows($verifica) >= 1){
-             
-            echo "existe uno o mas de uno";
-            var_dump($verifica);
+            
+            header("location:registracliente.php");
+            $_SESSION['usuexiste'] = "El DNI $dni  ya existe, por favor ingrese otro DNI"; 
         }else{
-            $sql= "insert into usuario values(null,$dni, '$nombre' , $telefono ,NOW())";
-        
-        }
-        $guardar= mysqli_query($con,$sql);
-
-        if($guardar){
-            $_SESSION['completado'] = "Registrado"; 
-        }else{
-            $_SESSION['errores']['general'] = "Fallo en el registro";
-        }
-
-
-
-
+            $sql= "insert into usuario values(null,$dni, '$nombre' , $telefono ,NOW())";      
+            $guardar= mysqli_query($con,$sql);
+            if($guardar){
+                $_SESSION['completado'] = "Registrado"; 
+            }else{
+                $_SESSION['errores']['general'] = "Fallo en el registro";
+            }
+        }    
     }else{
         $_SESSION['errores'] = $error;
     }
 }
-
-//header("location:registracliente.php");
+header("location:registracliente.php");
 ?>

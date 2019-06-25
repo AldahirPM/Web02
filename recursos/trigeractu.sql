@@ -71,7 +71,7 @@ update
 
 create table insert_producto
 (
-id_i int,
+id_i int primary key auto_increment,
 id int ,
 nombre  varchar(50) not null,
 nombre_viejo varchar(50) not null,
@@ -96,9 +96,10 @@ values (new.id,new.nombre, new.precio,new.id_cat,new.id_usu,new.cant_pro,now())
 
 create trigger actu_a  
 after insert on  producto
+alter table usuario
+modify fecha TIMESTAMP
 
-
-insert into producto values(null,'sublime', 7 , 1 ,2, 1 )
+insert into usuario values(null,747854, 'la vaca lola :v' , 96974856 ,now())
 create TRIGGER   editarproductos 
 AFTER UPDATE ON producto 
 FOR EACH  ROW 
@@ -108,6 +109,9 @@ VALUES(old.id,NEW.nombre,old.nombre,NEW.precio,old.precio,new.id_cat,old.id_cat,
 update insert_producto set nombre ='hola aldahir estoy vivo 2', precio = 50, id_cat =1, id_usu = 2, cant_pro = 4   where  id = 1
 
 select  * from insert_producto
+
+select  * from  usuario
+select 
 select  * from   producto
 
 insert_productoinsert into producto values(null, 'ultiam', 7 , 1 ,2, 1 , now())
