@@ -1,12 +1,5 @@
 {
-    "name": "oeraae/web02",
-    "authors": [
-        {
-            "name": "Pedro",
-            "email": "aldahir.pedro.123@gmail.com"
-        }
-    ],
-    "require": {
-        "mpdf/mpdf": "^8.0"
+    "require":{
+        "spipu/html2pdf":"*"
     }
 }
