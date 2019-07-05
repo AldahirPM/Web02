@@ -27,9 +27,16 @@ if(!empty($_GET['id'])){
 ?>
 
 <br>
-<form action="facturar.php?id=1" method="POST">
+
+<?php   if(isset($_GET['id'])):?>
+            <form action="facturar.php?id=<?=$_GET['id']?>" target ="_blank"method="POST">
+<?php   else:?>
+            <form action="facturar.php?dato=pee4o" target ="_blank"method="POST">
+<?php   endif; ?>
+
+
     <div class="container">
-    <?php if(!isset($condicion)){?>
+    <?php if(!isset($condicion)):?>
         <h1>Tus Produtos:</h1>
 
         <div class="form-row">
@@ -122,13 +129,12 @@ if(!empty($_GET['id'])){
                         <?php else: ?>
                             <td><strong>S/<?= ($totalproducto['Total'])?></strong></td>
                             <!-- <td><a href="facturar.php" class="btn btn-secondary">Facturar</a></td> -->
-                            <input type="submit" class="btn btn-secondary"  value="facturar">                       
+                            <td><input type="submit" class="btn btn-secondary"  value="Facturar"></td>                       
                         <?php endif; ?>
                     <?php endwhile;?>
                 </tr>
             </tbody>
         </table>
-    <?php }?>
-
+                <?php endif;?>
     </div> 
 </form>
